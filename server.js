@@ -14,21 +14,21 @@ app.use(cors({optionsSuccessStatus: 200}));  // some legacy browsers choke on 20
 app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (req, res) {
+app.get("/", function (_req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
 
 // your first API endpoint... 
-app.get("/api/hello", function (req, res) {
+app.get("/api/hello", function (_req, res) {
   res.json({greeting: 'hello API'});
 });
 
-app.get("/api/timestamp", (req, res) => {
+app.get("/api", (_req, res) => {
   const date = new Date();
   res.json({unix: date.valueOf(), utc: date.toGMTString()});
 });
-app.get("/api/timestamp/:time", (req, res) => {
+app.get("/api/:time", (req, res) => {
   let date;
   if (/^\d+$/.test(req.params.time)) {
     date = new Date(parseInt(req.params.time));
